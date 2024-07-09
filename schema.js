@@ -13,7 +13,8 @@ password:String!
 }
 
 type Query{
-getUsers(id:ID!):User
+getUsers(id:ID!):User,
+getAllUsers:[User],
 getUser(email: String!): User
 
 }

@@ -8,6 +8,7 @@ const resolvers = {
         getUser: async (_, { email }) => {
             return await User.find({ email: email });
         },
+        getAllUsers:async()=>{return await User.find()},
     },
     Mutation: {
         createUser: async (_, { input }) => {
