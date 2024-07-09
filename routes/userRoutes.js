@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { ApolloServer, gql } = require('apollo-server-express');
 const User = require('../model/userSchema'); // Adjust the path as needed
-const typeDefs=require('../schema')
-const resolvers=require('../resolvers')
+const typeDefs = require('../schema')
+const resolvers = require('../resolvers')
 const server = new ApolloServer({ typeDefs, resolvers });
 
 router.post('/register', async (req, res) => {
@@ -62,10 +62,31 @@ router.post('/login', async (req, res) => {
 });
 router.post('/logout', async (req, res) => {
     try {
-    res.status(200).send({ message: 'Logged out successfully' });
+        res.status(200).send({ message: 'Logged out successfully' });
     } catch (err) {
-    res.status(500).send({ message: err.message });
+        res.status(500).send({ message: err.message });
     }
-    });
+});
+router.get('/', async (req, res) => {
+    try {
+        const { data, error } = await server.executeOperation({
+            query: gql`
+                query{
+                    getAllUsers{
+                        id
+                        name
+                        email
+                        password
+            }}`
+        });
+        if(error){
+           return res.status(500).send({message:error})
+        }
+        res.status(200).send(data);
+
+    } catch (err) {
+        res.status(500).send({ message: err });
+    }
+})
 
 module.exports = router;

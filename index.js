@@ -11,8 +11,12 @@ const url ='mongodb+srv://kalyanilavanya12345:kWXsaJbOUz5eLWiQ@cluster0.vujwptm.
 
 app.use(express.json());
 app.use(cors())
-mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true}).then(()=>{console.log('DB connected')})
-.catch((err)=>{console.log(err)})
+mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true}).then(()=>{
+    //console.log('DB connected')
+    })
+.catch((err)=>{
+    //console.log(err)
+    })
 const server= new ApolloServer({typeDefs,resolvers})
 app.use('/users',userApiFormRouter);
 async function StartServer(){
@@ -25,3 +29,4 @@ async function StartServer(){
 }
 
 StartServer();
+module.exports=app;
