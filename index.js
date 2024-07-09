@@ -4,7 +4,7 @@ const mongoose=require('mongoose')
 const port=3001;
 const cors=require('cors')
 const typeDefs=require('./schema')
-const resolvers=require('./resolvers')
+const resolvers=require('./resolvers');
 const userApiFormRouter = require('./routes/userRoutes')
 const {ApolloServer}=require('apollo-server-express')
 const url ='mongodb+srv://kalyanilavanya12345:kWXsaJbOUz5eLWiQ@cluster0.vujwptm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
@@ -19,15 +19,9 @@ async function StartServer(){
     await server.start();
     server.applyMiddleware({app});
     app.listen(port,()=>{
-        console.log('Server Live on Port 3001')
+        console.log('Server Live on Port 3001!!!!!!!!!!!!!')
+        
     })
 }
-function Testing(){
-    return 1;
-}
-function Test2(){
-    return false;
-}
-Testing();
-Test2();
+
 StartServer();
